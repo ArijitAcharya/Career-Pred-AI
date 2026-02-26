@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Google OAuth Test</title>
+    <meta name="google-signin-client_id" content="982555087941-k5fk2auu28959ruc310g397eraiqhv8a.apps.googleusercontent.com">
+</head>
+<body>
+    <h1>Google OAuth Test</h1>
+    <div id="google-signin-button"></div>
+    <div id="result"></div>
+
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script>
+        function handleCredentialResponse(response) {
+            console.log("Google OAuth Response:", response);
+            document.getElementById('result').innerHTML = `
+                <h3>Success!</h3>
+                <p>Credential: ${response.credential.substring(0, 50)}...</p>
+            `;
+            
+            // Test sending to backend
+            fetch('http://127.0.0.1:8000/api/accounts/google/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    token: response.credential
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Backend response:', data);
+                document.getElementById('result').innerHTML += `
+                    <h3>Backend Response:</h3>
+                    <pre>${JSON.stringify(data, null, 2)}</pre>
+                `;
+            })
+            .catch(error => {
+                console.error('Backend error:', error);
+                document.getElementById('result').innerHTML += `
+                    <h3>Backend Error:</h3>
+                    <p>${error.message}</p>
+                `;
+            });
+        }
+
+        window.onload = function() {
+            google.accounts.id.initialize({
+                client_id: "982555087941-k5fk2auu28959ruc310g397eraiqhv8a.apps.googleusercontent.com",
+                callback: handleCredentialResponse
+            });
+
+            google.accounts.id.renderButton(
+                document.getElementById("google-signin-button"),
+                {
+                    theme: "outline",
+                    size: "large",
+                    text: "signin_with",
+                    shape: "rectangular",
+                }
+            );
+        };
+    </script>
+</body>
+</html>

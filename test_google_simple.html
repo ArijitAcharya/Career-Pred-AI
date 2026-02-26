@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Google OAuth Test</title>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+</head>
+<body>
+    <h1>Google OAuth Test</h1>
+    <div id="google-signin-button"></div>
+    <div id="result"></div>
+
+    <script>
+        function handleCredentialResponse(response) {
+            console.log("Google OAuth Response:", response);
+            document.getElementById('result').innerHTML = `
+                <h3>Success!</h3>
+                <p>Credential: ${response.credential.substring(0, 50)}...</p>
+            `;
+        }
+
+        window.onload = function() {
+            console.log("Initializing Google OAuth...");
+            google.accounts.id.initialize({
+                client_id: "982555087941-k5fk2auu28959ruc310g397eraiqhv8a.apps.googleusercontent.com",
+                callback: handleCredentialResponse
+            });
+
+            google.accounts.id.renderButton(
+                document.getElementById("google-signin-button"),
+                {
+                    theme: "outline",
+                    size: "large",
+                    text: "signin_with",
+                    shape: "rectangular",
+                }
+            );
+            
+            console.log("Google OAuth initialized");
+        };
+    </script>
+</body>
+</html>
