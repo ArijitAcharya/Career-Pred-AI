@@ -5,6 +5,10 @@
 .env.test.local
 .env.production.local
 
+# Ignore all env files anywhere in project (important for monorepo)
+**/.env
+**/.env.*
+
 # Database
 *.sqlite3
 db.sqlite3
