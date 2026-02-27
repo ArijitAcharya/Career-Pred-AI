@@ -127,7 +127,7 @@ Dashboard includes:
 -   Skill-based prediction input
 -   Resume upload module
 
-![App Screenshot](app_career-pred-ai-dashboardpage.jpg)
+https://github.com/ArijitAcharya/Career-Pred-AI/blob/main/career-pred-ai-dashboardpage.jpg
 
 ------------------------------------------------------------------------
 
