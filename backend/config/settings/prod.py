@@ -6,6 +6,9 @@ DEBUG = False
 
 ALLOWED_HOSTS = os.environ.get("ALLOWED_HOSTS", "").split(",")
 
+# CORS settings for production
+CORS_ALLOWED_ORIGINS = ["https://career-pred-ai-frontend.onrender.com"]
+
 DATABASES = {
     "default": dj_database_url.parse(os.environ.get("DATABASE_URL"))
 }
