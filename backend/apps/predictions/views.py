@@ -82,6 +82,18 @@ class PredictionHistoryView(generics.ListAPIView):
         return Prediction.objects.filter(user=self.request.user)
 
 
+class PredictionListCreateAPIView(generics.ListCreateAPIView):
+    authentication_classes = [JWTAuthentication]
+    permission_classes = [IsAuthenticated]
+    serializer_class = PredictionSerializer
+
+    def get_queryset(self):
+        return Prediction.objects.filter(user=self.request.user)
+
+    def perform_create(self, serializer):
+        serializer.save(user=self.request.user)
+
+
 class AllPredictionHistoryView(generics.ListAPIView):
     authentication_classes = [JWTAuthentication]
     permission_classes = [IsAuthenticated]

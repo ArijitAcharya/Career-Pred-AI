@@ -1,8 +1,9 @@
 from django.urls import path
 
-from .views import PredictionHistoryView, PredictFromResumeView, PredictFromSkillsView, AllPredictionHistoryView
+from .views import PredictionHistoryView, PredictFromResumeView, PredictFromSkillsView, AllPredictionHistoryView, PredictionListCreateAPIView
 
 urlpatterns = [
+    path("", PredictionListCreateAPIView.as_view(), name="prediction-list-create"),
     path("skills/", PredictFromSkillsView.as_view(), name="predict-skills"),
     path("resume/", PredictFromResumeView.as_view(), name="predict-resume"),
     path("history/", PredictionHistoryView.as_view(), name="prediction-history"),
