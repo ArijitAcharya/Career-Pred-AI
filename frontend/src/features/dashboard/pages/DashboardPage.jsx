@@ -128,15 +128,6 @@ export function DashboardPage() {
       bg: 'group-hover:bg-gradient-to-br group-hover:from-amber-50 group-hover:to-transparent dark:group-hover:from-amber-950/20',
       hover: 'transform transition-all duration-300 hover:scale-105 hover:shadow-lg',
     },
-    {
-      label: 'Resume uploads',
-      value: kpis.resumeUploadCount,
-      icon: FileText,
-      tone: 'text-sky-600/90 dark:text-sky-300',
-      ring: 'group-hover:ring-sky-500/20 dark:group-hover:ring-sky-400/15',
-      bg: 'group-hover:bg-gradient-to-br group-hover:from-sky-50 group-hover:to-transparent dark:group-hover:from-sky-950/20',
-      hover: 'transform transition-all duration-300 hover:scale-105 hover:shadow-lg',
-    },
   ]
 
   return (
@@ -148,7 +139,7 @@ export function DashboardPage() {
         </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {kpiItems.map((item) => {
           const Icon = item.icon
           return (
