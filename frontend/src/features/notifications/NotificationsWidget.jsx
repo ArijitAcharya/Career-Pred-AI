@@ -3,6 +3,7 @@ import toast from 'react-hot-toast'
 import { Bell } from 'lucide-react'
 
 import { notificationsApi } from '../../services/notificationsApi'
+import { FeatureUpdateNotification } from '../../components/FeatureUpdateNotification'
 
 export function NotificationsWidget() {
   const [items, setItems] = useState([])
@@ -83,6 +84,9 @@ export function NotificationsWidget() {
             </div>
           </div>
           <div className="max-h-80 overflow-auto">
+            <div className="p-4 border-b border-slate-100/80 dark:border-slate-700/80">
+              <FeatureUpdateNotification />
+            </div>
             {items.length === 0 ? (
               <div className="px-5 py-10 text-center">
                 <div className="w-14 h-14 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-700 rounded-2xl flex items-center justify-center mx-auto mb-4">
